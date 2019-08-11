@@ -17,7 +17,7 @@ class MainAdapter: RecyclerView.Adapter<GameViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-        holder.view.gameName.text = "asd"
+        /*holder.view.gameName.text = "asd"*/
     }
 
     override fun getItemCount(): Int {

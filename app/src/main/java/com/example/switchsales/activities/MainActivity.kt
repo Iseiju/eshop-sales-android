@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getGameList() {
-        val url = "https://aqueous-thicket-88998.herokuapp.com/"
+        val url = "https://switchsales.herokuapp.com/"
         val service = Retrofit
             .Builder()
             .baseUrl(url)
