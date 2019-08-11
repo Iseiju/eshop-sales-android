@@ -1,15 +1,16 @@
-package com.example.switchsales
+package com.example.switchsales.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.switchsales.R
 import kotlinx.android.synthetic.main.game_row.view.*
 
 class MainAdapter: RecyclerView.Adapter<GameViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        val layoutInflater = LayoutInflater.from(parent?.context)
+        val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.game_row, parent, false)
 
         return GameViewHolder(cellForRow)
