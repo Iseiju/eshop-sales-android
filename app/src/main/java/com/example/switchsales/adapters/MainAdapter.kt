@@ -23,8 +23,8 @@ class MainAdapter(private val game: List<Game>): RecyclerView.Adapter<GameViewHo
         Picasso.get().load(game[position].boxArt).into(boxArtView)
 
         holder.view.gameNameLabel.text = game[position].title
-        holder.view.priceLabel.text = game[position].price.toString()
-        holder.view.salePriceLabel.text = game[position].salePrice.toString()
+        holder.view.priceLabel.text = "$" + game[position].price.toString()
+        holder.view.salePriceLabel.text = "$" + game[position].salePrice.toString()
     }
 
     override fun getItemCount(): Int {
