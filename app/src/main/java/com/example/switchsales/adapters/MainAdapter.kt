@@ -5,9 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.switchsales.R
+import com.example.switchsales.models.DataEnvelope
+import com.example.switchsales.models.Game
 import kotlinx.android.synthetic.main.game_row.view.*
 
-class MainAdapter: RecyclerView.Adapter<GameViewHolder>() {
+class MainAdapter(private val game: List<Game>): RecyclerView.Adapter<GameViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -17,11 +19,13 @@ class MainAdapter: RecyclerView.Adapter<GameViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-        /*holder.view.gameName.text = "asd"*/
+        holder.view.gameNameLabel.text = game[position].title
+        holder.view.priceLabel.text = game[position].price.toString()
+        holder.view.salePriceLabel.text = game[position].salePrice.toString()
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return game.count()
     }
 }
 

@@ -7,35 +7,39 @@
         android:layout_height="wrap_content">
     <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp">
         <ImageView
-                android:layout_width="76dp"
-                android:layout_height="76dp" app:srcCompat="@mipmap/ic_launcher" android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" app:srcCompat="@mipmap/ic_launcher" android:id="@+id/imageView"
                 android:layout_weight="1"/>
         <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:paddingLeft="12dp">
             <TextView
                     android:text="Game name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/gameName" android:textSize="18sp"/>
+                    android:layout_height="wrap_content" android:id="@+id/gameNameLabel" android:textSize="18sp"
+                    android:lines="1"/>
             <TextView
                     android:text="Price"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/price" android:textSize="18sp"/>
+                    android:layout_height="wrap_content" android:id="@+id/priceLabel" android:textSize="18sp"
+                    android:lines="1"/>
             <TextView
                     android:text="Sale price"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" android:id="@+id/salePrice" android:textSize="18sp"/>
+                    android:layout_height="wrap_content" android:id="@+id/salePriceLabel" android:textSize="18sp"
+                    android:lines="1"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

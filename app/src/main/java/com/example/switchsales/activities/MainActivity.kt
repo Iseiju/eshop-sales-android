@@ -17,14 +17,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-        this.level = HttpLoggingInterceptor.Level.BODY
-    }
-
-    val client : OkHttpClient = OkHttpClient.Builder().apply {
-        this.addInterceptor(interceptor)
-    }.build()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,7 +27,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = MainAdapter()
     }
 
     private fun getGameList() {
@@ -44,7 +35,6 @@ class MainActivity : AppCompatActivity() {
             .Builder()
             .baseUrl(url)
             .addConverterFactory(GsonConverterFactory.create())
-            .client(client)
             .build()
             .create(GetGameService::class.java)
 
@@ -56,8 +46,11 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<DataEnvelope>, response: Response<DataEnvelope>) {
                 val data = response.body()?.data
-            }
 
+                runOnUiThread {
+                    recyclerView.adapter = data?.let { MainAdapter(it) }
+                }
+            }
         })
     }
 }
