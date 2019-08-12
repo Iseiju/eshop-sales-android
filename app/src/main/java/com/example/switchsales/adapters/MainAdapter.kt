@@ -11,6 +11,10 @@ import kotlinx.android.synthetic.main.game_row.view.*
 
 class MainAdapter(private val game: List<Game>): RecyclerView.Adapter<GameViewHolder>() {
 
+    override fun getItemCount(): Int {
+        return game.count()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val cellForRow = layoutInflater.inflate(R.layout.game_row, parent, false)
@@ -20,15 +24,15 @@ class MainAdapter(private val game: List<Game>): RecyclerView.Adapter<GameViewHo
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val boxArtView = holder.view.boxArtImageView
-        Picasso.get().load(game[position].boxArt).into(boxArtView)
+        Picasso
+            .get()
+            .load(game[position].boxArt)
+            .placeholder(R.drawable.ic_placeholder)
+            .into(boxArtView)
 
         holder.view.gameNameLabel.text = game[position].title
         holder.view.priceLabel.text = "$" + game[position].price.toString()
         holder.view.salePriceLabel.text = "$" + game[position].salePrice.toString()
-    }
-
-    override fun getItemCount(): Int {
-        return game.count()
     }
 }
 

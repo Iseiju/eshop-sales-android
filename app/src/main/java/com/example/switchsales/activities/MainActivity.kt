@@ -3,6 +3,7 @@ package com.example.switchsales.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.switchsales.adapters.MainAdapter
 import com.example.switchsales.R
@@ -21,12 +22,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initView()
         getGameList()
+        initViews()
     }
 
-    private fun initView() {
+    private fun initViews() {
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        swipeRefreshLayout.setOnRefreshListener {
+            getGameList()
+        }
     }
 
     private fun getGameList() {
@@ -49,6 +54,8 @@ class MainActivity : AppCompatActivity() {
 
                 runOnUiThread {
                     recyclerView.adapter = data?.let { MainAdapter(it) }
+                    progressBar.isVisible = false
+                    swipeRefreshLayout.isRefreshing = false
                 }
             }
         })
