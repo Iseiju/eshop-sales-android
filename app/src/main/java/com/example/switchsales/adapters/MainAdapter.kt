@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.switchsales.R
-import com.example.switchsales.models.DataEnvelope
 import com.example.switchsales.models.Game
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.game_row.view.*
 
 class MainAdapter(private val game: List<Game>): RecyclerView.Adapter<GameViewHolder>() {
@@ -19,6 +19,9 @@ class MainAdapter(private val game: List<Game>): RecyclerView.Adapter<GameViewHo
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
+  /*      val boxArtView = holder.view.boxArtImageView
+        Picasso.get().load(game[position].boxArt).into(boxArtView)*/
+
         holder.view.gameNameLabel.text = game[position].title
         holder.view.priceLabel.text = game[position].price.toString()
         holder.view.salePriceLabel.text = game[position].salePrice.toString()
