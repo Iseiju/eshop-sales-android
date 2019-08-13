@@ -22,6 +22,9 @@ class GameInfoActivity : AppCompatActivity() {
     private fun initViews() {
         val game = intent.getParcelableExtra<Game>("game") as Game
 
+        setSupportActionBar(findViewById(R.id.gameInfoToolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         eshopButton.setOnClickListener {
             val openUrl = Intent(Intent.ACTION_VIEW)
             openUrl.data = Uri.parse(game.url)
