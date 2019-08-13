@@ -22,12 +22,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getGameList()
         initViews()
+        getGameList()
     }
 
     private fun initViews() {
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+        setSupportActionBar(findViewById(R.id.mainToolbar))
 
         swipeRefreshLayout.setOnRefreshListener {
             getGameList()
@@ -53,8 +55,8 @@ class MainActivity : AppCompatActivity() {
                 val data = response.body()?.data
 
                 runOnUiThread {
-                    recyclerView.adapter = data?.let { MainAdapter(it) }
-                    progressBar.isVisible = false
+                    recyclerView.adapter = data?.let { MainAdapter(this@MainActivity, it) }
+//                    progressBar.isVisible = false
                     swipeRefreshLayout.isRefreshing = false
                 }
             }

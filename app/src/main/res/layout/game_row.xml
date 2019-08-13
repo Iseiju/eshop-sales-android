@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
         android:background="?android:attr/selectableItemBackground"
         android:clickable="true">
     <ImageView
@@ -24,7 +25,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/boxArtImageView"
             android:layout_marginBottom="8dp"
             app:layout_constraintTop_toBottomOf="@+id/priceLabel" android:fontFamily="@font/googlesans_regular"
-            android:textColor="@color/orange"/>
+            android:textColor="@color/colorPrimary"/>
     <TextView
             android:text="Price"
             android:layout_width="wrap_content"
