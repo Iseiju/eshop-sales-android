@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools" package="com.example.switchsales">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.example.switchsales">
 
     <uses-permission android:name="android.permission.INTERNET">
     </uses-permission>
@@ -15,23 +16,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning" tools:targetApi="m">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="m">
+        <activity
+            android:name=".activities.SplashActivity">
+            <intent-filter>
+                <action
+                    android:name="android.intent.action.MAIN"/>
+                <category
+                    android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>>
+        </activity>
+        <activity
+            android:name=".activities.MainActivity"
+            android:launchMode="singleTop">
+        </activity>
         <activity
             android:name=".activities.GameInfoActivity"
-            android:label="@string/title_activity_game_info"
-            android:theme="@style/AppTheme"
-            android:parentActivityName="com.example.switchsales.activities.MainActivity">
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.switchsales.activities.MainActivity" />
-        </activity>
-        <activity android:name=".activities.MainActivity"
-                  android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+                android:value="com.example.switchsales.activities.MainActivity"/>
         </activity>
     </application>
 </manifest>

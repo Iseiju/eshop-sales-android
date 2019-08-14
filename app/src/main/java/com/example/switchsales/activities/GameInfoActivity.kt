@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.text.HtmlCompat
 import com.example.switchsales.R
 import com.example.switchsales.models.Game
 import com.squareup.picasso.Picasso
@@ -35,7 +36,7 @@ class GameInfoActivity : AppCompatActivity() {
         gameNameLabel.text = game.title
         salePriceLabel.text = "$" + game.salePrice.toString()
         priceLabel.text = "$" + game.price.toString()
-        descriptionLabel.text = game.description
+        descriptionLabel.text = HtmlCompat.fromHtml(game.description, HtmlCompat.FROM_HTML_MODE_LEGACY);
 
         val releaseDate = game.releaseDate.split("T").first()
         val parser = SimpleDateFormat("yyyy-mm-dd")

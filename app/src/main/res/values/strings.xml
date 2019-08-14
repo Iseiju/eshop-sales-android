@@ -1,4 +1,5 @@
 <resources>
-    <string name="app_name">Sales</string>
+    <string name="app_name">Switch Sales</string>
+    <string name="title_main">Sales</string>
     <string name="title_activity_game_info">Info</string>
 </resources>

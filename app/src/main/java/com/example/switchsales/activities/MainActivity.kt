@@ -1,5 +1,6 @@
 package com.example.switchsales.activities
 
+import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
                 runOnUiThread {
                     recyclerView.adapter = data?.let { MainAdapter(this@MainActivity, it) }
-//                    progressBar.isVisible = false
+                    progressBar.isVisible = false
                     swipeRefreshLayout.isRefreshing = false
                 }
             }
