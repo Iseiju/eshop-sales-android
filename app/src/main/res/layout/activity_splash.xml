@@ -7,4 +7,8 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:gravity="center"
-    tools:context=".activities.SplashActivity"/>
+    tools:context=".activities.SplashActivity">
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp" app:srcCompat="@mipmap/ic_launch" android:id="@+id/imageView"/>
+</androidx.appcompat.widget.LinearLayoutCompat>

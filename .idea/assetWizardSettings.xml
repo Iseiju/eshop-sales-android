@@ -29,17 +29,6 @@
                                           </PersistentState>
                                         </value>
                                       </entry>
-                                      <entry key="clipartAsset">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="url" value="jar:file:/Applications/Android%20Studio.app/Contents/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_back_black_24dp.xml" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
                                       <entry key="image">
                                         <value>
                                           <PersistentState>
@@ -56,8 +45,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Desktop/ic_placeholder.png" />
-                                      <entry key="outputName" value="ic_placeholder" />
+                                      <entry key="imageAsset" value="C:\Users\Iseiju\Desktop\ic_launch.png" />
+                                      <entry key="outputName" value="ic_launch" />
                                       <entry key="theme" value="CUSTOM" />
                                       <entry key="themeColor" value="ffa500" />
                                     </map>
