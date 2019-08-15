@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getGameList() {
-        val url = "https://switchsales.herokuapp.com/"
+        val url = "https://switchsales.herokuapp.com"
+        val localhost =  "http://172.16.4.43:3000"
         val service = Retrofit
             .Builder()
             .baseUrl(url)
@@ -55,8 +56,12 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<DataEnvelope>, response: Response<DataEnvelope>) {
                 val data = response.body()?.data
 
+                val sorted = data?.sortedBy {
+                    it.title
+                }
+
                 runOnUiThread {
-                    recyclerView.adapter = data?.let { MainAdapter(this@MainActivity, it) }
+                    recyclerView.adapter = sorted?.let { MainAdapter(this@MainActivity, it) }
                     progressBar.isVisible = false
                     swipeRefreshLayout.isRefreshing = false
                 }

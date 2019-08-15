@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Game(val url: String,
+data class Game(val id: Int,
+                val url: String,
                 val title: String,
                 val description: String,
                 val boxArt: String,
