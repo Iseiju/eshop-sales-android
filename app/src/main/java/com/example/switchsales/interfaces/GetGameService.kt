@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface GetGameService {
 
-    @GET("eshop-sales")
+    @GET("games/eshop-sales")
     fun getGames() : Call<DataEnvelope>
 }
