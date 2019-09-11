@@ -14,6 +14,6 @@ data class Game(val id: Int,
                 @SerializedName("categories") val category: List<String>,
                 val esrb: String,
                 val company: List<String>,
-                val availability: List<String>,
+                val availability: List<String?>,
                 val price: Double,
                 val salePrice: Double) : Parcelable
