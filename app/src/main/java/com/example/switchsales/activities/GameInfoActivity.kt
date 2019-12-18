@@ -1,17 +1,34 @@
 package com.example.switchsales.activities
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.text.HtmlCompat
 import com.example.switchsales.R
+import com.example.switchsales.extensions.fetchViewModel
 import com.example.switchsales.models.Game
+import com.example.switchsales.viewmodels.GameInfoViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_game_info.*
 import java.text.SimpleDateFormat
 
 class GameInfoActivity : AppCompatActivity() {
+
+    companion object {
+        private const val gameKey = "game"
+
+        fun getIntent(context: Context, model: Game): Intent {
+            val intent = Intent(context, GameInfoActivity::class.java)
+            intent.putExtra(gameKey, model)
+            return intent
+        }
+    }
+
+    private val viewModel by lazy {
+        fetchViewModel { GameInfoViewModel(intent.getParcelableExtra(gameKey) as Game) }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,46 +38,29 @@ class GameInfoActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        val game = intent.getParcelableExtra<Game>("game") as Game
-
         setSupportActionBar(findViewById(R.id.gameInfoToolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         eshopButton.setOnClickListener {
             val openUrl = Intent(Intent.ACTION_VIEW)
-            openUrl.data = Uri.parse(game.url)
+            openUrl.data = Uri.parse(viewModel.getGameUrl())
             startActivity(openUrl)
         }
 
-        Picasso.get().load(game.boxArt).placeholder(R.drawable.ic_placeholder).into(boxArtImageView)
-        gameNameLabel.text = game.title
-        salePriceLabel.text = "$" + game.salePrice.toString()
-        priceLabel.text = "$" + game.price.toString()
-        descriptionLabel.text = HtmlCompat.fromHtml(game.description, HtmlCompat.FROM_HTML_MODE_LEGACY);
+        Picasso
+            .get()
+            .load(viewModel.getBoxArt())
+            .placeholder(R.drawable.ic_placeholder)
+            .into(boxArtImageView)
 
-        val releaseDate = game.releaseDate.split("T").first()
-        val parser = SimpleDateFormat("yyyy-mm-dd")
-        val formatter = SimpleDateFormat("MMM d, yyyy")
-        val releaseDateFormatted = formatter.format(parser.parse(releaseDate))
+        gameNameLabel.text = viewModel.getGameTitle()
+        salePriceLabel.text = viewModel.getSalePrice()
+        priceLabel.text = viewModel.getPrice()
+        descriptionLabel.text = viewModel.getDescription()
+        releaseDateLabel.text = viewModel.getReleaseDate()
+        categoryLabel.text = viewModel.getCategory()
+        companyLabel.text = viewModel.getCompany()
 
-        releaseDateLabel.text = "Release Date: " + releaseDateFormatted
-        categoryLabel.text = "Category: " + game.category.first()
-        companyLabel.text = "Company: " + game.company.first()
-
-        if (game.esrb == "Everyone") {
-            ratingImageView.setImageResource(R.mipmap.ic_everyone)
-        } else if (game.esrb == "Teen") {
-            ratingImageView.setImageResource(R.mipmap.ic_teen)
-        } else if (game.esrb == "Mature") {
-            ratingImageView.setImageResource(R.mipmap.ic_mature17plus)
-        } else if (game.esrb == "Everyone 10+") {
-            ratingImageView.setImageResource(R.mipmap.ic_everyone10plus)
-        } else if (game.esrb == "Adults Only") {
-            ratingImageView.setImageResource(R.mipmap.ic_adultsonly)
-        } else if (game.esrb == "Early Childhood") {
-            ratingImageView.setImageResource(R.mipmap.ic_earlychildhood)
-        } else {
-            ratingImageView.setImageResource(R.mipmap.ic_ratingpending)
-        }
+        ratingImageView.setImageResource(viewModel.setESRBImage())
     }
 }

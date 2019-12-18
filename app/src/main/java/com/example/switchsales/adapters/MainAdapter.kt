@@ -5,18 +5,18 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.switchsales.R
 import com.example.switchsales.activities.GameInfoActivity
 import com.example.switchsales.models.Game
+import com.example.switchsales.viewmodels.GameViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.game_row.view.*
 
-class MainAdapter(val context: Context, private val game: List<Game>): RecyclerView.Adapter<GameViewHolder>() {
+class MainAdapter(private val viewModel: GameViewModel): RecyclerView.Adapter<GameViewHolder>() {
 
     override fun getItemCount(): Int {
-        return game.count()
+        return viewModel.getCount()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
@@ -27,25 +27,26 @@ class MainAdapter(val context: Context, private val game: List<Game>): RecyclerV
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
-        val boxArtView = holder.view.boxArtImageView
-        Picasso
-            .get()
-            .load(game[position].boxArt)
-            .placeholder(R.drawable.ic_placeholder)
-            .into(boxArtView)
-
-        holder.view.gameNameLabel.text = game[position].title
-        holder.view.priceLabel.text = "$" + game[position].price.toString()
-        holder.view.salePriceLabel.text = "$" + game[position].salePrice.toString()
-
-        holder.view.setOnClickListener {
-            val intent = Intent(context, GameInfoActivity::class.java)
-            intent.putExtra("game", game[position])
-            context.startActivity(intent)
-        }
+        holder.bind(viewModel.getBoxArt(position),
+                    viewModel.getGameName(position),
+                    viewModel.getPrice(position),
+                    viewModel.getSalePrice(position),
+                    viewModel.onClick(position))
     }
 }
 
-class GameViewHolder(val view: View): RecyclerView.ViewHolder(view) {
+class GameViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
+    fun bind(url: String, gameName: String, price: String, salePrice: String, onClick: () -> Unit) {
+        Picasso
+            .get()
+            .load(url)
+            .placeholder(R.drawable.ic_placeholder)
+            .into(itemView.boxArtImageView)
+
+        itemView.gameNameLabel.text = gameName
+        itemView.priceLabel.text = price
+        itemView.salePriceLabel.text = salePrice
+        itemView.setOnClickListener { onClick() }
+    }
 }
