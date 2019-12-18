@@ -1,14 +1,10 @@
 package com.example.switchsales.adapters
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.switchsales.R
-import com.example.switchsales.activities.GameInfoActivity
-import com.example.switchsales.models.Game
 import com.example.switchsales.viewmodels.GameViewModel
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.game_row.view.*
